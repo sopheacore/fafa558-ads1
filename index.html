@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FAFA558 វេទិកាភ្នាល់កីឡា⚽️🏆</title>
+
+  <!-- ============ Meta Pixel (Facebook) ============ -->
+  <script>
+    !(function(f,b,e,v,n,t,s){
+      if(f.fbq) return; n=f.fbq=function(){ n.callMethod ?
+        n.callMethod.apply(n,arguments) : n.queue.push(arguments) };
+      if(!f._fbq) f._fbq=n; n.push=n; n.loaded=!0; n.version='2.0';
+      n.queue=[]; t=b.createElement(e); t.async=!0;
+      t.src=v; s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s);
+    })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+
+    // TODO: put your real Pixel ID here
+    fbq('init', 'YOUR_PIXEL_ID');
+    fbq('track', 'PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+         src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"/>
+  </noscript>
+  <!-- =============================================== -->
+
+  <style>
+    :root{
+      --register-width: 78%;   /* change this to resize the big button */
+      --register-top: 33%;     /* move the big button up/down */
+      --backdrop-blur: 24px;   /* look of the side/background fill */
+      --backdrop-dim: 0.55;    /* 0 (no dim) → 1 (dark) */
+    }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      background: #000;
+      display: grid;
+      place-items: center;
+      overflow: hidden;        /* no scrolling */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Fullscreen blurred background to fill the sides */
+    .backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background: center / cover no-repeat url("images/bg.webp");
+      filter: blur(var(--backdrop-blur)) brightness(var(--backdrop-dim));
+      transform: scale(1.08);
+      pointer-events: none;
+    }
+
+    /* Center poster/stage (always fully visible, 9:16, no crop) */
+    .stage {
+      position: relative;
+      width: min(100vw, calc(100vh * 9 / 16));
+      width: min(100vw, calc(100dvh * 9 / 16));  /* modern mobile */
+      aspect-ratio: 9 / 16;
+      overflow: hidden;
+      filter: drop-shadow(0 8px 24px rgba(0,0,0,0.6));
+    }
+
+    /* Crisp poster image (show entire image) */
+    .poster {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;    /* shows full top & bottom, no crop */
+      display: block;
+      pointer-events: none;
+    }
+
+    /* overlay helper */
+    .el {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      display: block;
+      z-index: 2;
+    }
+
+    .usd150 {
+      top: 13%;
+      width: 40%;
+      left: 36%;              /* set to 50% for true center if you want */
+    }
+
+    /* two small buttons row (5% and FREE) */
+    .cta-row {
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      display: flex;
+      gap: 0%;
+      justify-content: center;
+      align-items: center;
+      z-index: 2;
+    }
+    .cta-row a { flex: 1 1 0; display: inline-block; }
+    .cta-row img { width: 100%; display: block; }
+
+    /* register (big rounded button) — tweak with the vars above */
+    .register-btn {
+      top: var(--register-top);
+      width: var(--register-width);
+      animation: pulse 1s infinite;
+      transform-origin: center;
+    }
+
+
+    @keyframes pulse {
+      0%   { transform: translateX(-50%) scale(1); }
+      50%  { transform: translateX(-50%) scale(1.08); }
+      100% { transform: translateX(-50%) scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Fullscreen blurred background -->
+  <div class="backdrop" aria-hidden="true"></div>
+
+  <!-- Crisp central poster (no crop, no scroll) -->
+  <div class="stage" id="stage">
+    <img class="poster" src="images/bg.webp" alt="Background Poster">
+
+    <!-- 150 USD -->
+    <img class="el usd150" src="images/150-usd.webp" alt="150 USD">
+
+    <!-- two small buttons (track Purchase on click) -->
+    <div class="cta-row">
+      <a href="https://t.me/fafa558kh_bot?start=LD1" target="_blank"
+         aria-label="5 percent" data-fb-purchase data-name="5% Button">
+        <img src="images/5p.gif" alt="5%">
+      </a>
+      <a href="https://t.me/fafa558kh_bot?start=LD1" target="_blank"
+         aria-label="free" data-fb-purchase data-name="Free Button">
+        <img src="images/freegif.gif" alt="Free">
+      </a>
+    </div>
+
+    <!-- big register button (track Purchase on click) -->
+    <a class="el register-btn" href="https://t.me/fafa558kh_bot?start=LD1" target="_blank"
+       aria-label="register" data-fb-purchase data-name="Register Button">
+      <img src="images/register-bt.gif" alt="Register Button" style="width:100%; height:auto;">
+    </a>
+  </div>
+
+  <!-- Track Purchase on any CTA click -->
+  <script>
+    (function setupFbPurchaseTracking(){
+      const ctas = document.querySelectorAll('a[data-fb-purchase]');
+      ctas.forEach(a => {
+        a.addEventListener('click', function(){
+          const name = this.dataset.name || this.getAttribute('aria-label') || 'CTA';
+          // Send a Purchase event; customize value/currency if you want
+          if (window.fbq) {
+            fbq('track', 'Purchase', {
+              value: 0.00,
+              currency: 'USD',
+              content_name: name,
+              content_category: 'FAFA558 Landing',
+              event_source: 'button_click'
+            });
+          }
+        }, { passive: true });
+      });
+    })();
+  </script>
+
+</body>
+</html>
